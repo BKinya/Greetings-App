@@ -1,16 +1,15 @@
 package com.example.greetingsapp
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
 import com.example.greetingsapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,26 +18,34 @@ class MainActivity : AppCompatActivity() {
   private lateinit var binding: ActivityMainBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    WindowCompat.setDecorFitsSystemWindows(window, false)
     super.onCreate(savedInstanceState)
-
-    //  Disable dark mode
+    // Disable Dark Mode
     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    setSupportActionBar(binding.toolbar)
+    setUpToolBar()
+  }
 
-    val navController = findNavController(R.id.nav_host_fragment_content_main)
+  private fun setUpToolBar() {
+    val toolbar = binding.toolbar
+    setSupportActionBar(toolbar)
+
+    val navController = findNavController(R.id.nav_host_fragment)
     appBarConfiguration = AppBarConfiguration(navController.graph)
-    setupActionBarWithNavController(navController, appBarConfiguration)
-
+    toolbar.setupWithNavController(navController, appBarConfiguration)
   }
 
-
-  override fun onSupportNavigateUp(): Boolean {
-    val navController = findNavController(R.id.nav_host_fragment_content_main)
-    return navController.navigateUp(appBarConfiguration)
-        || super.onSupportNavigateUp()
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    val inflater: MenuInflater = menuInflater
+    inflater.inflate(R.menu.menu_items, menu)
+    return true
   }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    val navController = findNavController(R.id.nav_host_fragment)
+    return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+  }
+
 }
