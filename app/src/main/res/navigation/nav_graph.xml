@@ -3,7 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/nav_graph"
-  app:startDestination="@id/firstFragment">
+  app:startDestination="@id/registerFragment">
 
   <fragment
     android:id="@+id/firstFragment"
@@ -15,4 +15,13 @@
     android:name="com.example.greetingsapp.UserProfileFragment"
     android:label="@string/second_fragment_label"
     tools:layout="@layout/fragment_user_profile"/>
+  <fragment
+    android:id="@+id/registerFragment"
+    android:name="com.example.greetingsapp.RegisterFragment"
+    android:label="fragment_register"
+    tools:layout="@layout/fragment_register" >
+    <action
+      android:id="@+id/action_registerFragment_to_firstFragment"
+      app:destination="@id/firstFragment" />
+  </fragment>
 </navigation>
