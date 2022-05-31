@@ -1,17 +1,16 @@
 package com.example.greetingsapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.greetingsapp.databinding.FragmentSecondBinding
+import androidx.fragment.app.Fragment
+import com.example.greetingsapp.databinding.FragmentUserProfileBinding
 
 
-class SecondFragment : Fragment() {
+class UserProfileFragment : Fragment() {
 
-  private var _binding: FragmentSecondBinding? = null
+  private var _binding: FragmentUserProfileBinding? = null
   private val binding get() = _binding!!
 
   override fun onCreateView(
@@ -19,7 +18,7 @@ class SecondFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
 
-    _binding = FragmentSecondBinding.inflate(inflater, container, false)
+    _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
     return binding.root
 
   }
@@ -27,9 +26,6 @@ class SecondFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    binding.buttonSecond.setOnClickListener {
-
-    }
   }
 
   override fun onDestroyView() {

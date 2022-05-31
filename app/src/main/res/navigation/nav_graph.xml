@@ -11,8 +11,8 @@
     android:label="@string/first_fragment_label"
     tools:layout="@layout/fragment_first"/>
   <fragment
-    android:id="@+id/secondFragment"
-    android:name="com.example.greetingsapp.SecondFragment"
+    android:id="@+id/userProfileFragment"
+    android:name="com.example.greetingsapp.UserProfileFragment"
     android:label="@string/second_fragment_label"
-    tools:layout="@layout/fragment_second"/>
+    tools:layout="@layout/fragment_user_profile"/>
 </navigation>
