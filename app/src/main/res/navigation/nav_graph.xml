@@ -7,17 +7,17 @@
 
   <fragment
     android:id="@+id/firstFragment"
-    android:name="com.example.greetingsapp.FirstFragment"
+    android:name="com.example.greetingsapp.fragments.GreetingsFragment"
     android:label="@string/first_fragment_label"
-    tools:layout="@layout/fragment_first"/>
+    tools:layout="@layout/fragment_greetings"/>
   <fragment
     android:id="@+id/userProfileFragment"
-    android:name="com.example.greetingsapp.UserProfileFragment"
+    android:name="com.example.greetingsapp.fragments.UserProfileFragment"
     android:label="@string/second_fragment_label"
     tools:layout="@layout/fragment_user_profile"/>
   <fragment
     android:id="@+id/registerFragment"
-    android:name="com.example.greetingsapp.RegisterFragment"
+    android:name="com.example.greetingsapp.fragments.RegisterFragment"
     android:label="fragment_register"
     tools:layout="@layout/fragment_register" >
     <action

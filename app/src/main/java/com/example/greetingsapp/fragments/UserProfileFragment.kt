@@ -1,4 +1,4 @@
-package com.example.greetingsapp
+package com.example.greetingsapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
