@@ -48,6 +48,8 @@ class GreetingsFragment : Fragment() {
     setUpToolBar()
     getUserProfile()
     observeProfile()
+    getLanguage()
+    observeLanguage()
   }
 
   override fun onDestroyView() {
@@ -82,7 +84,7 @@ class GreetingsFragment : Fragment() {
     val popupMenu = PopupMenu(requireContext(), binding.toolbar)
     popupMenu.menuInflater.inflate(R.menu.languages_popup_menu, popupMenu.menu)
     popupMenu.setOnMenuItemClickListener { item ->
-      Toast.makeText(requireContext(), "item $item", Toast.LENGTH_LONG).show()
+      greetingsViewModel.saveLanguage(item.toString(), requireContext())
       true
     }
     popupMenu.show()
@@ -96,9 +98,24 @@ class GreetingsFragment : Fragment() {
 
   private fun observeProfile() {
     greetingsViewModel.userProfile.observe(viewLifecycleOwner) { userProfile ->
-      Log.d("What", "${userProfile.funFact}")
       val name = userProfile.name
       binding.greetingsTextView.text = getString(R.string.greeting, name )
+    }
+  }
+
+  private fun getLanguage(){
+    greetingsViewModel.getLanguage(requireContext())
+  }
+
+  private fun observeLanguage(){
+    greetingsViewModel.language.observe(viewLifecycleOwner){ language ->
+      Log.d("WhatLanguage", "$language")
+      val menuItem = binding.toolbar.menu.findItem(R.id.languageItem)
+      if (language != null){
+        menuItem.title = language
+      }else{
+        menuItem.title = "Select Language"
+      }
     }
   }
 }

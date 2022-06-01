@@ -4,11 +4,11 @@
   <item
     android:id="@+id/languageItem"
     android:title="@string/select_language"
-    app:showAsAction="always|withText" />
+    app:showAsAction="ifRoom" />
   <item
     android:id="@+id/profileItem"
     android:title="@string/user_profile"
     android:icon="@drawable/ic_baseline_person_24"
-    app:showAsAction="ifRoom"/>
+    app:showAsAction="always"/>
 
 </menu>

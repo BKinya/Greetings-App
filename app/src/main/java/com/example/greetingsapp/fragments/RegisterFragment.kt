@@ -1,6 +1,7 @@
 package com.example.greetingsapp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,7 @@ class RegisterFragment : Fragment() {
   private val binding get() = _binding!!
 
   private val greetingsViewModel: GreetingsViewModel by viewModel()
-  val language = "English"
+  var language = "English"
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +46,7 @@ class RegisterFragment : Fragment() {
   private fun setUpLanguageDropDown() {
     val items = listOf("English", "Kiswahili", "Kimeru")
     val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
-    binding.test.setAdapter(adapter)
+    binding.languageEdiText.setAdapter(adapter)
   }
 
   private fun setSaveBtnClickListener(){
@@ -70,6 +71,8 @@ class RegisterFragment : Fragment() {
       val name = nameEditText.text.toString()
       val hobby = hobbyEditText.text.toString()
       val funFact = funFactEditText.text.toString()
+      val selectedLanguage = languageEdiText.text.toString()
+      Log.d("RegisterFragmentLogs", "language  is $selectedLanguage")
 
       val isValid = isValidString(name) && isValidString(hobby) && isValidString(funFact)
       if (isValid) {
@@ -78,7 +81,10 @@ class RegisterFragment : Fragment() {
           hobby = hobby,
           funFact = funFact
         )
-        greetingsViewModel.saveUserProfile(user, language = language, requireContext())
+        if (isValidString(selectedLanguage)){
+          language = selectedLanguage
+        }
+        greetingsViewModel.saveUserProfile(user, language, requireContext())
       } else {
         Snackbar.make(binding.root, "All fields are required", Snackbar.LENGTH_LONG).show()
       }

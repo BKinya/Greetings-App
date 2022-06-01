@@ -19,6 +19,10 @@ class GreetingsViewModel() : ViewModel() {
   val userProfile: LiveData<UserProfile>
     get() = _userProfile
 
+  private val _language = MutableLiveData<String?>()
+  val language: LiveData<String?>
+  get() = _language
+
 
   fun saveUserProfile(user: User, language: String, context: Context) {
     viewModelScope.launch {
@@ -45,7 +49,7 @@ class GreetingsViewModel() : ViewModel() {
   fun getLanguage(context: Context){
    viewModelScope.launch {
      repository.getLanguage(context).collect {
-
+     _language.postValue(it)
      }
    }
   }
