@@ -9,9 +9,8 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    android:orientation="vertical"
-    android:layout_gravity="center">
+    android:layout_margin="24dp"
+    android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
       android:id="@+id/photoImageView"
@@ -20,59 +19,64 @@
      android:layout_gravity="center_horizontal"
       android:src="@drawable/photo"/>
 
-    <View
+    <TextView
+      style="@style/textViewStyle"
       android:layout_width="match_parent"
-      android:layout_height="2dp"
-      android:background="@color/black"/>
+      android:layout_height="wrap_content"
+      android:text="@string/name" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/nameTilProfile"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint=""
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/nameEditTextProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-      android:id="@+id/nameTextView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:text="@string/name"
-      android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-    <View
+      style="@style/textViewStyle"
       android:layout_width="match_parent"
-      android:layout_height="2dp"
-      android:background="@color/black"/>
+      android:layout_height="wrap_content"
+      android:text="@string/hobby" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/hobbyTilProfile"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint=""
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/hobbyEditTextProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-      android:id="@+id/emailTextView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:text="@string/email"
-      android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-
-    <View
+      style="@style/textViewStyle"
       android:layout_width="match_parent"
-      android:layout_height="2dp"
-      android:background="@color/black"/>
-
-    <TextView
-      android:id="@+id/hobbyTextView"
-      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:text="@string/hobby"
-      android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+      android:text="@string/funFact" />
 
-
-    <View
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/funFactTilProfile"
       android:layout_width="match_parent"
-      android:layout_height="2dp"
-      android:background="@color/black"/>
-
-    <TextView
-      android:id="@+id/funFactTextView"
-      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:text="@string/funFact"
-      android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+      android:hint=""
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
+      <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/funFactEditTextProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
   </LinearLayout>
 </androidx.core.widget.NestedScrollView>

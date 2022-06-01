@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.example.greetingsapp.R
 import com.example.greetingsapp.databinding.FragmentGreetingsBinding
 import com.example.greetingsapp.viewmodel.GreetingsViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class GreetingsFragment : Fragment() {
 
   private var _binding: FragmentGreetingsBinding? = null
   private val binding get() = _binding!!
 
-  private val greetingsViewModel: GreetingsViewModel by viewModels()
+  private val greetingsViewModel: GreetingsViewModel by sharedViewModel()
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,

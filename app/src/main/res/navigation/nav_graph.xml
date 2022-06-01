@@ -13,7 +13,7 @@
   <fragment
     android:id="@+id/userProfileFragment"
     android:name="com.example.greetingsapp.fragments.UserProfileFragment"
-    android:label=""
+    android:label="My Profile"
     tools:layout="@layout/fragment_user_profile"/>
   <fragment
     android:id="@+id/registerFragment"
