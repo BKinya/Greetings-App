@@ -2,7 +2,6 @@ package com.example.greetingsapp
 
 import android.content.Context
 import android.os.Bundle
-import androidx.activity.viewModels
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -16,7 +15,6 @@ import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.example.greetingsapp.databinding.ActivityMainBinding
 import com.example.greetingsapp.serializers.UserProfileSerializer
-import com.example.greetingsapp.viewmodel.GreetingsViewModel
 
 private const val DATA_STORE_FILE_NAME = "user_profile.pb"
 val Context.protoDataStore: DataStore<UserProfile> by dataStore(
@@ -46,7 +44,9 @@ class MainActivity : AppCompatActivity() {
     setSupportActionBar(toolbar)
 
     val navController = findNavController(R.id.nav_host_fragment)
-    appBarConfiguration = AppBarConfiguration(navController.graph)
+    appBarConfiguration = AppBarConfiguration(setOf(
+      R.id.registerFragment, R.id.greetingsFragment
+    ))
     toolbar.setupWithNavController(navController, appBarConfiguration)
   }
 

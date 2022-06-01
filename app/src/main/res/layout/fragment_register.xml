@@ -7,6 +7,8 @@
   android:orientation="vertical"
   tools:context=".fragments.RegisterFragment">
 
+
+
   <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -16,18 +18,16 @@
     android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
 
   <TextView
+    style="@style/textViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:text="@string/nameLabel"
-    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
-
+    android:text="@string/nameLabel" />
   <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/nameTil"
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="Name">
+    android:hint="Enter Name">
 
     <com.google.android.material.textfield.TextInputEditText
       android:id="@+id/nameEditText"
@@ -38,12 +38,10 @@
   </com.google.android.material.textfield.TextInputLayout>
 
   <TextView
+    style="@style/textViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:text="@string/hobbyLabel"
-    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
-
+    android:text="@string/hobbyLabel" />
   <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/hobbyTil"
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -59,13 +57,12 @@
 
   </com.google.android.material.textfield.TextInputLayout>
 
+
   <TextView
+    style="@style/textViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:text="@string/fun_fact_about_you"
-    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
-
+    android:text="@string/fun_fact_about_you" />
   <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/funFactTil"
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -80,12 +77,12 @@
       android:inputType="text" />
 
   </com.google.android.material.textfield.TextInputLayout>
+
   <TextView
+    style="@style/textViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:text="@string/select_language"
-    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+    android:text="@string/select_language" />
 
   <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/selectLanguageTil"
@@ -106,9 +103,20 @@
     android:id="@+id/registerBtn"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text="@string/register"
     android:layout_gravity="center_horizontal"
-    android:padding="4dp"/>
+    android:layout_marginTop="10dp"
+    android:padding="4dp"
+    android:text="@string/register" />
+
+  <Button
+    android:id="@+id/skipBtn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:text="@string/already_registered_skip"
+    style="@style/Widget.MaterialComponents.Button.TextButton"
+    android:textAllCaps="false"
+    android:layout_marginTop="16dp"
+    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"/>
 
 </LinearLayout>

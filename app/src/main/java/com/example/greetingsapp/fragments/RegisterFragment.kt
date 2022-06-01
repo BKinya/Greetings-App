@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.greetingsapp.R
@@ -34,6 +33,7 @@ class RegisterFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     setUpLanguageDropDown()
     setSaveBtnClickListener()
+    setSkipBtnClicked()
   }
 
   override fun onDestroyView() {
@@ -50,8 +50,18 @@ class RegisterFragment : Fragment() {
   private fun setSaveBtnClickListener(){
     binding.registerBtn.setOnClickListener {
       validateAndSave()
-      findNavController().navigate(R.id.action_registerFragment_to_firstFragment)
+      goToGreetingsFragment()
     }
+  }
+
+  private fun setSkipBtnClicked(){
+    binding.skipBtn.setOnClickListener {
+      goToGreetingsFragment()
+    }
+  }
+
+  private fun goToGreetingsFragment(){
+    findNavController().navigate(R.id.action_registerFragment_to_greetingsFragment)
   }
 
   private fun validateAndSave() {

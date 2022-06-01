@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.greetingsapp.R
 import com.example.greetingsapp.databinding.FragmentGreetingsBinding
 import com.example.greetingsapp.viewmodel.GreetingsViewModel
 
@@ -31,8 +32,6 @@ class GreetingsFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     getUserProfile()
     observeProfile()
-    binding.buttonFirst.setOnClickListener {
-    }
   }
 
   override fun onDestroyView() {
@@ -47,8 +46,8 @@ class GreetingsFragment : Fragment() {
   private fun observeProfile() {
     greetingsViewModel.userProfile.observe(viewLifecycleOwner) { userProfile ->
       Log.d("What", "${userProfile.funFact}")
-      binding.textviewFirst.text = userProfile.funFact
-
+      val name = userProfile.name
+      binding.greetingsTextView.text = getString(R.string.greeting, name )
     }
   }
 }
