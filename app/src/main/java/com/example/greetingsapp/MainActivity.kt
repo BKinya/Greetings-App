@@ -24,9 +24,7 @@ val Context.protoDataStore: DataStore<UserProfile> by dataStore(
 
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var binding: ActivityMainBinding
-
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -36,29 +34,6 @@ class MainActivity : AppCompatActivity() {
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    setUpToolBar()
-  }
-
-  private fun setUpToolBar() {
-    val toolbar = binding.toolbar
-    setSupportActionBar(toolbar)
-
-    val navController = findNavController(R.id.nav_host_fragment)
-    appBarConfiguration = AppBarConfiguration(setOf(
-      R.id.registerFragment, R.id.greetingsFragment
-    ))
-    toolbar.setupWithNavController(navController, appBarConfiguration)
-  }
-
-  override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    val inflater: MenuInflater = menuInflater
-    inflater.inflate(R.menu.menu_items, menu)
-    return true
-  }
-
-  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    val navController = findNavController(R.id.nav_host_fragment)
-    return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
   }
 
 }

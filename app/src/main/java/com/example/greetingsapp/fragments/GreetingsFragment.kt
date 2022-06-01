@@ -3,10 +3,19 @@ package com.example.greetingsapp.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
 import com.example.greetingsapp.R
+import com.example.greetingsapp.databinding.ActivityMainBinding
 import com.example.greetingsapp.databinding.FragmentGreetingsBinding
 import com.example.greetingsapp.viewmodel.GreetingsViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -17,6 +26,11 @@ class GreetingsFragment : Fragment() {
   private val binding get() = _binding!!
 
   private val greetingsViewModel: GreetingsViewModel by sharedViewModel()
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setHasOptionsMenu(true)
+  }
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +44,7 @@ class GreetingsFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    setUpToolBar()
     getUserProfile()
     observeProfile()
   }
@@ -39,6 +54,32 @@ class GreetingsFragment : Fragment() {
     _binding = null
   }
 
+  private fun setUpToolBar() {
+    val toolbar = binding.toolbar
+    // Inflate the Menu
+    toolbar.inflateMenu(R.menu.menu_items)
+    setToolBarItemClicked()
+  }
+
+  private fun setToolBarItemClicked(){
+    binding.toolbar.setOnMenuItemClickListener {
+      when(it.itemId){
+        R.id.languageItem ->{
+          Toast.makeText(requireContext(), "Language", Toast.LENGTH_LONG).show()
+          true
+        }
+        R.id.profileItem ->{
+          goToUserProfile()
+          true
+        }
+        else -> { false}
+      }
+    }
+  }
+
+  private fun goToUserProfile(){
+    findNavController().navigate(R.id.action_greetingsFragment_to_userProfileFragment)
+  }
   private fun getUserProfile() {
     greetingsViewModel.getUserProfile(requireContext())
   }
