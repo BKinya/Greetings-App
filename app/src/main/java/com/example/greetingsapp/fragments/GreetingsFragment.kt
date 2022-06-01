@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
@@ -65,7 +66,7 @@ class GreetingsFragment : Fragment() {
     binding.toolbar.setOnMenuItemClickListener {
       when(it.itemId){
         R.id.languageItem ->{
-          Toast.makeText(requireContext(), "Language", Toast.LENGTH_LONG).show()
+          createPopUpMenu()
           true
         }
         R.id.profileItem ->{
@@ -77,6 +78,15 @@ class GreetingsFragment : Fragment() {
     }
   }
 
+  private fun createPopUpMenu(){
+    val popupMenu = PopupMenu(requireContext(), binding.toolbar)
+    popupMenu.menuInflater.inflate(R.menu.languages_popup_menu, popupMenu.menu)
+    popupMenu.setOnMenuItemClickListener { item ->
+      Toast.makeText(requireContext(), "item $item", Toast.LENGTH_LONG).show()
+      true
+    }
+    popupMenu.show()
+  }
   private fun goToUserProfile(){
     findNavController().navigate(R.id.action_greetingsFragment_to_userProfileFragment)
   }

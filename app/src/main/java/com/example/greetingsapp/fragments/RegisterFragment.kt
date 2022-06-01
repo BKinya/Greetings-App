@@ -20,6 +20,7 @@ class RegisterFragment : Fragment() {
   private val binding get() = _binding!!
 
   private val greetingsViewModel: GreetingsViewModel by viewModel()
+  val language = "English"
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -77,7 +78,7 @@ class RegisterFragment : Fragment() {
           hobby = hobby,
           funFact = funFact
         )
-        greetingsViewModel.saveUserProfile(user, requireContext())
+        greetingsViewModel.saveUserProfile(user, language = language, requireContext())
       } else {
         Snackbar.make(binding.root, "All fields are required", Snackbar.LENGTH_LONG).show()
       }

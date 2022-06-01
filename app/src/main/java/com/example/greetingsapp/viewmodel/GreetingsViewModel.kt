@@ -16,22 +16,38 @@ import kotlinx.coroutines.launch
 class GreetingsViewModel() : ViewModel() {
   private val repository = GreetingsRepository()
   private val _userProfile = MutableLiveData<UserProfile>()
-  val userProfile: LiveData<UserProfile> get() = _userProfile
-  fun saveUserProfile(user: User, context: Context) {
+  val userProfile: LiveData<UserProfile>
+    get() = _userProfile
+
+
+  fun saveUserProfile(user: User, language: String, context: Context) {
     viewModelScope.launch {
       repository.saveUserProfile(user, context)
+      repository.saveLanguage(language, context)
     }
   }
 
   fun getUserProfile(context: Context) {
-    Log.d("GreetingsViewModel", "Getting started")
     viewModelScope.launch {
-      Log.d("GreetingsViewModel", "proceed")
       val profile = repository.getUserProfile(context)
       profile.collect {
-        Log.d("GreetingsViewModel", "Maybe collect is the correct way to go ${it.name}")
         _userProfile.value = it
       }
     }
   }
+
+  fun saveLanguage(language: String ,context: Context){
+    viewModelScope.launch {
+      repository.saveLanguage(language, context)
+    }
+  }
+
+  fun getLanguage(context: Context){
+   viewModelScope.launch {
+     repository.getLanguage(context).collect {
+
+     }
+   }
+  }
+
 }
