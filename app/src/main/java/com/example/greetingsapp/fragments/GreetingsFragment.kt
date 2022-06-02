@@ -1,23 +1,17 @@
 package com.example.greetingsapp.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.example.greetingsapp.R
-import com.example.greetingsapp.databinding.ActivityMainBinding
 import com.example.greetingsapp.databinding.FragmentGreetingsBinding
+import com.example.greetingsapp.translations
 import com.example.greetingsapp.viewmodel.GreetingsViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -25,8 +19,9 @@ class GreetingsFragment : Fragment() {
 
   private var _binding: FragmentGreetingsBinding? = null
   private val binding get() = _binding!!
-
   private val greetingsViewModel: GreetingsViewModel by sharedViewModel()
+  private var name = "Android"
+  private var greeting = "Hi"
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -98,8 +93,7 @@ class GreetingsFragment : Fragment() {
 
   private fun observeProfile() {
     greetingsViewModel.userProfile.observe(viewLifecycleOwner) { userProfile ->
-      val name = userProfile.name
-      binding.greetingsTextView.text = getString(R.string.greeting, name )
+      name = userProfile.name
     }
   }
 
@@ -109,13 +103,21 @@ class GreetingsFragment : Fragment() {
 
   private fun observeLanguage(){
     greetingsViewModel.language.observe(viewLifecycleOwner){ language ->
-      Log.d("WhatLanguage", "$language")
       val menuItem = binding.toolbar.menu.findItem(R.id.languageItem)
       if (language != null){
         menuItem.title = language
+        greeting = getGreeting(language) ?: "Hi"
+        showGreetings()
       }else{
         menuItem.title = "Select Language"
       }
     }
   }
+
+  private fun getGreeting(language: String) = translations[language]
+
+  private fun showGreetings(){
+    binding.greetingsTextView.text = "$greeting $name!"
+  }
+
 }

@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import com.example.greetingsapp.R
 import com.example.greetingsapp.databinding.FragmentUserProfileBinding
 import com.example.greetingsapp.viewmodel.GreetingsViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -25,13 +29,12 @@ class UserProfileFragment : Fragment() {
 
     _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
     return binding.root
-
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     observeUserprofile()
-
+    setUpToolBar()
   }
 
   override fun onDestroyView() {
@@ -39,9 +42,15 @@ class UserProfileFragment : Fragment() {
     _binding = null
   }
 
+  private fun setUpToolBar() {
+    val toolbar = binding.toolbarProfile
+    val navController = findNavController()
+    val appBarConfiguration = AppBarConfiguration(navController.graph)
+    toolbar.setupWithNavController(navController, appBarConfiguration)
+  }
+
   private fun observeUserprofile(){
     greetingsViewModel.userProfile.observe(viewLifecycleOwner){
-      Log.d("UserprofileLogs", "name is ${it.name}")
       with(binding){
         nameEditTextProfile.setText(it.name)
         hobbyEditTextProfile.setText(it.hobby)

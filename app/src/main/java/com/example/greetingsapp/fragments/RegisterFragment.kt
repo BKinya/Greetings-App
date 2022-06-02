@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.greetingsapp.ENG
+import com.example.greetingsapp.MER
 import com.example.greetingsapp.R
+import com.example.greetingsapp.SW
 import com.example.greetingsapp.databinding.FragmentRegisterBinding
 import com.example.greetingsapp.domain.User
 import com.example.greetingsapp.viewmodel.GreetingsViewModel
@@ -44,7 +47,7 @@ class RegisterFragment : Fragment() {
   }
 
   private fun setUpLanguageDropDown() {
-    val items = listOf("English", "Kiswahili", "Kimeru")
+    val items = listOf(MER, SW, ENG)
     val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
     binding.languageEdiText.setAdapter(adapter)
   }
