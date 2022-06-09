@@ -53,7 +53,7 @@ MVVM
 
 ## About the Author
 Android Engineer | Android Author @ raywenderlich.com | Likes Crochet and Knitting. <br>
-[Twitter: B__Kinya](https://twitter.com/B__Kinya)&nbsp;[LinkedIn: Beatrice Kinya](www.linkedin.com/in/beatrice-kinya-93307514b)
+[Twitter: B__Kinya](https://twitter.com/B__Kinya) | [LinkedIn: Beatrice Kinya](www.linkedin.com/in/beatrice-kinya-93307514b)
 
 
 ## References/Resources
